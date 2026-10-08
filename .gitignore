@@ -1,0 +1,16 @@
+# üretilen / geçici dosyalar
+build/stills*/
+build/sheet*.png
+build/*.log
+build/scene_tall_backup.html
+build/PREVIEW_*.mp4
+build/contact_sheet_*.png
+previews/_*.mp4
+audio/_premaster.wav
+audio/*.wav
+finals/_*.mp4
+vo/*/
+node_modules/
+# sırlar: anahtarlar asla depoya girmez
+.env
+*.key

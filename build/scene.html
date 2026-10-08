@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Likya Studios 9:16</title>
+<style>
+  html,body{margin:0;background:#0F1A2E;overflow:hidden}
+  #stage{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:0 0;overflow:hidden;
+    font-family:'SF Pro Display','Inter Display','Inter',-apple-system,sans-serif;color:#fff;background:#0F1A2E}
+  .abs{position:absolute;left:0;top:0;will-change:transform,opacity,filter}
+  .scene{position:absolute;inset:0;opacity:0}
+  #bg,#glow1,#glow2,#vig{position:absolute;inset:0}
+  #glow1,#glow2{border-radius:50%;filter:blur(40px)}
+  .kicker{font-size:34px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;white-space:nowrap}
+  .h1{font-size:104px;font-weight:700;letter-spacing:-.025em;line-height:1.05;white-space:nowrap}
+  .gold{background:linear-gradient(180deg,#f6e5b0 0%,#c8a76a 55%,#8f6f33 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tile{border-radius:22%;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 2px rgba(255,255,255,.08)}
+  .tile img{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+  .card{border-radius:36px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 0 2px rgba(255,255,255,.1)}
+  .card img{display:block;width:100%;height:100%;object-fit:cover}
+  .chip{display:inline-block;padding:14px 30px;border-radius:999px;border:2px solid rgba(255,255,255,.55);
+    background:rgba(255,255,255,.08);font-size:28px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
+  .pcard{width:200px;height:290px;border-radius:22px;background:linear-gradient(160deg,#fff,#e9e6dc);box-shadow:0 26px 60px rgba(0,0,0,.55);color:#111}
+  .pcard b{position:absolute;left:18px;top:10px;font-size:54px;line-height:1;font-family:'Inter',sans-serif}
+  .pcard i{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;font-style:normal;font-size:150px;color:#111}
+  .pcard b.r{left:auto;right:18px;top:auto;bottom:10px;transform:rotate(180deg)}
+  .center{left:0;width:1080px;text-align:center}
+  body.wide #stage{width:1920px;height:1080px}
+  body.wide .center{width:1920px}
+  body.wide #hero{left:1080px!important;width:600px!important;height:1080px!important;box-shadow:0 0 120px rgba(0,0,0,.6)}
+  body.wide #s0scrim{width:1920px!important;height:1080px!important;background:linear-gradient(90deg,rgba(15,26,46,.92) 0%,rgba(15,26,46,.55) 38%,rgba(15,26,46,0) 60%)!important}
+  body.wide #sweep{width:2120px!important}
+  body.wide #w0a{left:140px!important;top:330px!important} body.wide #w0b{left:140px!important;top:470px!important} body.wide #w0c{left:140px!important;top:610px!important}
+  body.wide #w0a .h1,body.wide #w0b .h1,body.wide #w0c .h1{font-size:128px}
+  body.wide #s1k{left:140px!important;top:150px!important}
+  body.wide #s1a{left:140px!important;top:230px!important} body.wide #s1b{left:140px!important;top:390px!important} body.wide #s1c{left:140px!important;top:550px!important}
+  body.wide #s1a .h1,body.wide #s1b .h1,body.wide #s1c .h1{font-size:128px!important}
+  body.wide #s1panel{left:960px!important;top:340px!important;width:900px!important;height:400px!important}
+  body.wide #s1t0{left:1000px!important;top:420px!important;width:240px!important;height:240px!important} body.wide #s1t1{left:1290px!important;top:420px!important;width:240px!important;height:240px!important} body.wide #s1t2{left:1580px!important;top:420px!important;width:240px!important;height:240px!important}
+  body.wide #s1t0 img{width:291px!important;height:291px!important} body.wide #s1t1 img{width:240px!important;height:240px!important} body.wide #s1t2 img{width:326px!important;height:326px!important}
+  body.wide #s3b .h1{font-size:80px!important}
+  body.wide #s2k,body.wide #s3k,body.wide #s4k{left:140px!important;top:230px!important}
+  body.wide #s2a,body.wide #s3a,body.wide #s4a{left:140px!important;top:310px!important} body.wide #s2b,body.wide #s3b,body.wide #s4b{left:140px!important;top:430px!important}
+  body.wide #s2chip,body.wide #s3chip,body.wide #s4chip{left:140px!important;top:610px!important}
+  body.wide #s2card{left:900px!important;top:260px!important} body.wide #s2tile{left:1580px!important;top:640px!important}
+  body.wide #s3card{left:900px!important;top:180px!important} body.wide #s3c0{left:960px!important;top:560px!important} body.wide #s3c1{left:1230px!important;top:540px!important} body.wide #s3c2{left:1500px!important;top:560px!important} body.wide #s3tile{left:140px!important;top:760px!important}
+  body.wide #s4wheel{left:1000px!important;top:160px!important} body.wide #s4tile{left:1660px!important;top:120px!important}
+  body.wide #s5k{top:330px!important} body.wide #s5a{top:410px!important} body.wide #s5b{top:530px!important} body.wide #s5scrim{left:0!important;top:260px!important;width:1920px!important;height:520px!important}
+  body.wide #s6w1{top:310px!important} body.wide #s6w2{top:500px!important} body.wide #s6tag{top:630px!important} body.wide #s6cta{top:750px!important} body.wide #s6url{top:910px!important}
+  body.wide #s7hero{left:0!important;width:1920px!important;height:1080px!important}
+  body.wide #s7dark{width:1920px!important;height:1080px!important}
+  body.wide #s7l1{top:330px!important;left:960px!important} body.wide #s7l2{top:650px!important;left:960px!important}
+  body.wide #s7w1{top:370px!important} body.wide #s7w2{top:520px!important} body.wide #s7ea{top:690px!important} body.wide #s7url{top:910px!important}
+  body.wide #bg,body.wide #vig{width:1920px;height:1080px}
+
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="bg"></div><div id="glow1" class="abs"></div><div id="glow2" class="abs"></div>
+
+  <!-- SAHNE 0: açılış -->
+  <div class="scene" id="s0">
+    <img id="hero" class="abs" src="likya_hero_vertical.jpg" style="width:1080px;height:1920px;object-fit:cover">
+    <div id="s0scrim" class="abs" style="left:0;top:0;width:1080px;height:1920px;background:linear-gradient(180deg,rgba(15,26,46,0) 38%,rgba(15,26,46,.88) 78%)"></div>
+    <div id="sweep" class="abs" style="left:-100px;top:0;width:1280px;height:6px;background:linear-gradient(90deg,transparent,#36CFC9,#fff,#36CFC9,transparent);box-shadow:0 0 50px 14px rgba(54,207,201,.7)"></div>
+    <div class="abs" id="w0a" style="left:90px;top:1000px"><div class="h1">Fikirden</div></div>
+    <div class="abs" id="w0b" style="left:90px;top:1112px"><div class="h1 gold">Dijital</div></div>
+    <div class="abs" id="w0c" style="left:90px;top:1224px"><div class="h1">Gerçekliğe.</div></div>
+  </div>
+
+  <!-- SAHNE 1: stüdyo -->
+  <div class="scene" id="s1">
+    <div class="abs kicker" id="s1k" style="left:90px;top:300px;color:#36CFC9">Likya Studios</div>
+    <div class="abs" id="s1a" style="left:90px;top:380px"><div class="h1" style="font-size:132px">Uygulamalar</div></div>
+    <div class="abs" id="s1b" style="left:90px;top:530px"><div class="h1 gold" style="font-size:132px">Oyunlar</div></div>
+    <div class="abs" id="s1c" style="left:90px;top:680px"><div class="h1" style="font-size:132px">Yapay zekâ</div></div>
+    <div class="abs" id="s1panel" style="left:40px;top:900px;width:1000px;height:420px;border-radius:48px;background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.03));border:2px solid rgba(255,255,255,.14)"></div>
+    <svg class="abs" width="1080" height="1920" style="left:0;top:0"><path id="s1l1" d="M 210 1110 L 540 1110" stroke="#36CFC9" stroke-width="4" stroke-dasharray="330" fill="none" opacity=".9"/><path id="s1l2" d="M 540 1110 L 870 1110" stroke="#C8A76A" stroke-width="4" stroke-dasharray="330" fill="none" opacity=".9"/></svg>
+    <div class="abs tile" id="s1t0" style="left:70px;top:970px;width:280px;height:280px"><img src="icon_wine.png" style="width:340px;height:340px"></div>
+    <div class="abs tile" id="s1t1" style="left:400px;top:970px;width:280px;height:280px"><img src="icon_batak.png" style="width:280px;height:280px"></div>
+    <div class="abs tile" id="s1t2" style="left:730px;top:970px;width:280px;height:280px"><img src="icon_astrosync.jpg" style="width:380px;height:380px"></div>
+  </div>
+
+  <!-- SAHNE 2: Wine -->
+  <div class="scene" id="s2">
+    <div class="abs kicker gold" id="s2k" style="left:90px;top:320px">Wine Intelligence</div>
+    <div class="abs" id="s2a" style="left:90px;top:400px"><div class="h1">Şarap keşfine</div></div>
+    <div class="abs" id="s2b" style="left:90px;top:520px"><div class="h1">yeni bir bakış</div></div>
+    <div class="abs" id="s2chip" style="left:90px;top:670px"><span class="chip">Geliştirme önizlemesi</span></div>
+    <div class="abs card" id="s2card" style="left:60px;top:800px;width:960px;height:469px"><img src="banner_wine.png"></div>
+    <div class="abs tile" id="s2tile" style="left:700px;top:1130px;width:260px;height:260px"><img src="icon_wine.png" style="width:318px;height:318px"></div>
+  </div>
+
+  <!-- SAHNE 3: Batak -->
+  <div class="scene" id="s3">
+    <div class="abs kicker gold" id="s3k" style="left:90px;top:320px">Likya Batak</div>
+    <div class="abs" id="s3a" style="left:90px;top:400px"><div class="h1">Klasik oyuna</div></div>
+    <div class="abs" id="s3b" style="left:90px;top:520px"><div class="h1" style="font-size:92px">modern bir dokunuş</div></div>
+    <div class="abs" id="s3chip" style="left:90px;top:670px"><span class="chip">Geliştirme önizlemesi</span></div>
+    <div class="abs card" id="s3card" style="left:60px;top:790px;width:960px;height:320px"><img src="banner_batak.png"></div>
+    <div class="abs pcard" id="s3c0" style="left:170px;top:1160px"><b>A<br>♠</b><i>♠</i><b class="r">A<br>♠</b></div>
+    <div class="abs pcard" id="s3c1" style="left:440px;top:1140px"><b>K<br>♠</b><i>♠</i><b class="r">K<br>♠</b></div>
+    <div class="abs pcard" id="s3c2" style="left:710px;top:1160px"><b>Q<br>♠</b><i>♠</i><b class="r">Q<br>♠</b></div>
+    <div class="abs tile" id="s3tile" style="left:800px;top:700px;width:200px;height:200px"><img src="icon_batak.png" style="width:200px;height:200px"></div>
+  </div>
+
+  <!-- SAHNE 4: AstroSync -->
+  <div class="scene" id="s4">
+    <div class="abs kicker" id="s4k" style="left:90px;top:320px;color:#C9B5FF">AstroSync</div>
+    <div class="abs" id="s4a" style="left:90px;top:400px"><div class="h1">Gökyüzüyle</div></div>
+    <div class="abs" id="s4b" style="left:90px;top:520px"><div class="h1 gold">yeni bir bağ</div></div>
+    <div class="abs" id="s4chip" style="left:90px;top:670px"><span class="chip">Geliştirme önizlemesi</span></div>
+    <div class="abs" id="s4wheel" style="left:160px;top:800px;width:760px;height:760px;border-radius:50%;overflow:hidden;box-shadow:0 0 120px rgba(150,100,255,.55),0 0 0 3px rgba(255,255,255,.18);background:url(banner_astrosync.jpg) -1020px -57px/1792px 875px no-repeat"></div>
+    <canvas id="s4orbit" class="abs" width="1080" height="1920" style="left:0;top:0"></canvas>
+    <div class="abs tile" id="s4tile" style="left:790px;top:690px;width:190px;height:190px"><img src="icon_astrosync.jpg" style="width:258px;height:258px"></div>
+  </div>
+
+  <!-- SAHNE 5: AI Lab -->
+  <div class="scene" id="s5">
+    <canvas id="s5net" class="abs" width="1080" height="1920" style="left:0;top:0"></canvas><div class="abs" id="s5scrim" style="left:0;top:470px;width:1080px;height:540px;background:radial-gradient(ellipse at 50% 50%,rgba(10,22,40,.92),rgba(10,22,40,0) 70%)"></div>
+    <div class="abs kicker center" id="s5k" style="top:560px;color:#36CFC9">AI Lab</div>
+    <div class="abs center" id="s5a" style="top:640px"><div class="h1">Yapay zekâyla</div></div>
+    <div class="abs center" id="s5b" style="top:760px"><div class="h1 gold">yeni deneyimler</div></div>
+  </div>
+
+  <!-- SAHNE 6: birleşme + CTA -->
+  <div class="scene" id="s6">
+    <div class="abs tile" id="s6t0" style="left:0;top:0;width:200px;height:200px"><img src="icon_wine.png" style="width:244px;height:244px"></div>
+    <div class="abs tile" id="s6t1" style="left:0;top:0;width:200px;height:200px"><img src="icon_batak.png" style="width:200px;height:200px"></div>
+    <div class="abs tile" id="s6t2" style="left:0;top:0;width:200px;height:200px"><img src="icon_astrosync.jpg" style="width:272px;height:272px"></div>
+    <div class="abs center" id="s6w1" style="top:740px"><div class="gold" style="font-size:170px;font-weight:700;letter-spacing:.1em;padding-left:.1em">LİKYA</div></div>
+    <div class="abs center" id="s6w2" style="top:930px"><div style="font-size:64px;font-weight:500;letter-spacing:.7em;padding-left:.7em;color:#C8A76A">STUDIOS</div></div>
+    <div class="abs center" id="s6tag" style="top:1070px"><div style="font-size:60px;font-weight:600;letter-spacing:-.01em">Fikirden dijital gerçekliğe.</div></div>
+    <div class="abs center" id="s6cta" style="top:1210px"><span style="display:inline-block;padding:34px 74px;border-radius:999px;font-size:50px;font-weight:700;color:#0F1A2E;background:linear-gradient(90deg,#36CFC9,#7be8e2);box-shadow:0 0 70px rgba(54,207,201,.55)">Projelerimizi keşfet</span></div>
+    <div class="abs center" id="s6url" style="top:1370px"><div class="gold" style="font-size:54px;font-weight:600;letter-spacing:.04em">likyastudios.live</div></div>
+  </div>
+
+  <!-- SAHNE 7: kapanış kartı -->
+  <div class="scene" id="s7">
+    <img id="s7hero" class="abs" src="likya_hero_vertical.jpg" style="width:1080px;height:1920px;object-fit:cover">
+    <div class="abs" id="s7dark" style="left:0;top:0;width:1080px;height:1920px;background:rgba(15,26,46,.78)"></div>
+    <div class="abs" id="s7l1" style="left:540px;top:640px;width:0;height:2px;background:linear-gradient(90deg,transparent,#C8A76A,transparent)"></div>
+    <div class="abs center" id="s7w1" style="top:700px"><div class="gold" style="font-size:120px;font-weight:700;letter-spacing:.12em;padding-left:.12em">LİKYA</div></div>
+    <div class="abs center" id="s7w2" style="top:850px"><div style="font-size:50px;font-weight:500;letter-spacing:.7em;padding-left:.7em;color:#C8A76A">STUDIOS</div></div>
+    <div class="abs" id="s7l2" style="left:540px;top:990px;width:0;height:2px;background:linear-gradient(90deg,transparent,#C8A76A,transparent)"></div>
+    <div class="abs center" id="s7ea" style="top:1040px"><div class="gold" style="font-size:190px;font-weight:300;letter-spacing:.18em;padding-left:.18em">E ✦ A</div></div>
+    <div class="abs center" id="s7url" style="top:1300px"><div style="font-size:42px;font-weight:500;letter-spacing:.08em;color:rgba(255,255,255,.85)">likyastudios.live</div></div>
+  </div>
+  <div id="vig" style="background:radial-gradient(ellipse at 50% 50%,rgba(0,0,0,0) 55%,rgba(0,0,0,.45) 100%);pointer-events:none"></div>
+</div>
+
+<script>
+const WIDE=location.search.includes('wide');
+const SW=WIDE?1920:1080, SH=WIDE?1080:1920;
+if(WIDE) document.body.classList.add('wide');
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const seg=(t,a,b)=>clamp((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,4);
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const eb=x=>{const c1=1.5,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+const $=id=>document.getElementById(id);
+const lerp=(a,b,x)=>a+(b-a)*x;
+const mix=(c1,c2,x)=>c1.map((v,i)=>Math.round(lerp(v,c2[i],x)));
+const rgb=c=>`rgb(${c[0]},${c[1]},${c[2]})`;
+const rnd=s=>{s=Math.sin(s*127.1+311.7)*43758.5453;return s-Math.floor(s)};
+
+function put(el,{x=0,y=0,s=1,r=0,o=1,b=0}={}){
+  el.style.transform=`translate(${x}px,${y}px) rotate(${r}deg) scale(${s})`;
+  el.style.opacity=o; el.style.filter=b>0.2?`blur(${b.toFixed(1)}px)`:'none';
+}
+// Kelime girişi: soldan kayarak, bulanıklıkla netleşir
+function word(el,t,t0,dx=-160,dur=.9){
+  const p=seg(t,t0,t0+dur), e=eo(p);
+  put(el,{x:dx*(1-e),o:clamp(p*3),b:(1-e)*16});
+}
+// Yumuşak çıkış
+const fadeOut=(t,t1,d=.25)=>1-seg(t,t1-d,t1);
+
+const SC=[ // [başlangıç, bitiş]
+  [0,3.5],[3.2,7.5],[7.2,12.5],[12.2,17.5],[17.2,21.6],[21.3,24.5],[24.2,28.25],[28,30.1]];
+const COL=[ // başlangıç zamanı, zemin A, zemin B, parıltı
+  [0,[15,26,46],[13,58,92],[54,207,201]],
+  [3.2,[13,58,92],[15,26,46],[54,207,201]],
+  [7.2,[58,7,22],[22,3,12],[200,30,80]],
+  [12.2,[5,48,26],[3,22,12],[20,140,70]],
+  [17.2,[26,15,61],[10,6,30],[120,70,230]],
+  [21.3,[13,58,92],[15,26,46],[54,207,201]],
+  [24.2,[15,26,46],[8,14,28],[54,207,201]],
+  [28,[15,26,46],[8,14,28],[200,167,106]]];
+
+function background(t){
+  let i=0;for(let k=0;k<COL.length;k++) if(t>=COL[k][0]-0.15) i=k;
+  const cur=COL[i], prev=COL[Math.max(0,i-1)];
+  const x=i===0?1:eio(seg(t,cur[0]-0.15,cur[0]+0.45));
+  const A=mix(prev[1],cur[1],x),B=mix(prev[2],cur[2],x),G=mix(prev[3],cur[3],x);
+  $('bg').style.background=`linear-gradient(170deg,${rgb(A)},${rgb(B)})`;
+  const g1=$('glow1'),g2=$('glow2');
+  g1.style.width=g1.style.height='900px';g2.style.width=g2.style.height='700px';
+  g1.style.background=`radial-gradient(circle,rgba(${G},.55),rgba(${G},0) 65%)`;
+  g2.style.background=`radial-gradient(circle,rgba(${G},.35),rgba(${G},0) 65%)`;
+  put(g1,{x:(WIDE?500:140)+Math.sin(t*.7)*160,y:(WIDE?0:200)+Math.cos(t*.5)*(WIDE?120:220)});
+  put(g2,{x:(WIDE?1100:380)+Math.cos(t*.6)*180,y:(WIDE?380:1000)+Math.sin(t*.45)*(WIDE?120:260)});
+}
+
+function R(t){
+  background(t);
+  SC.forEach((s,i)=>{
+    const el=$('s'+i);
+    let o=seg(t,s[0],s[0]+.25)*(i===7?1:fadeOut(t,s[1]));
+    if(i===0) o=fadeOut(t,s[1]);
+    el.style.opacity=o; el.style.display=o<=0.001?'none':'block';
+  });
+
+  /* ---------- S0 ---------- */
+  {
+    const p=seg(t,.1,1.3), e=eo(p);
+    put($('hero'),{s:lerp(1.18,1.0,eo(seg(t,0,3.4))),o:e,b:(1-e)*26});
+    $('hero').style.clipPath=`inset(0 0 ${(1-eo(seg(t,.1,.9)))*100}% 0)`;
+    put($('sweep'),{y:lerp(-20,SH,eio(seg(t,.1,.95))),o:p<1&&t>.1&&t<1?1:0});
+    put($('s0scrim'),{o:seg(t,.9,1.5)});
+    word($('w0a'),t,1.35);word($('w0b'),t,1.6);word($('w0c'),t,1.85);
+  }
+  /* ---------- S1 ---------- */
+  {
+    word($('s1k'),t,3.35,-80,.5);
+    word($('s1a'),t,3.45);word($('s1b'),t,3.7);word($('s1c'),t,3.95);
+    put($('s1panel'),{y:lerp(80,0,eo(seg(t,4.2,5.0))),o:eo(seg(t,4.2,5.0))});
+    ['s1t0','s1t1','s1t2'].forEach((id,k)=>{
+      const p=seg(t,4.7+k*.25,5.4+k*.25);
+      put($(id),{y:lerp(180,0,eb(p))+Math.sin(t*2+k*1.5)*8*seg(t,5.6,5.8),s:lerp(.4,1,eb(p)),o:clamp(p*4),b:(1-eo(p))*16,r:(1-eo(p))*(k-1)*14});
+    });
+    $('s1l1').style.strokeDashoffset=330*(1-eo(seg(t,5.9,6.4)));
+    $('s1l2').style.strokeDashoffset=330*(1-eo(seg(t,6.2,6.7)));
+  }
+  /* ---------- S2 Wine ---------- */
+  {
+    word($('s2k'),t,7.35,-80,.5);word($('s2a'),t,7.45);word($('s2b'),t,7.7);
+    const p=seg(t,7.35,8.3),e=eo(p);
+    put($('s2card'),{x:lerp(1100,0,e)+Math.sin(t*.8)*6*seg(t,8.3,8.6),o:clamp(p*3),b:(1-e)*30});
+    const q=seg(t,8.5,9.2);put($('s2tile'),{s:lerp(.3,1,eb(q)),o:clamp(q*4),r:lerp(-25,0,eo(q)),b:(1-eo(q))*14,y:Math.sin(t*1.8)*8*seg(t,9.3,9.5)});
+    const c=seg(t,9.1,9.6);put($('s2chip'),{y:lerp(30,0,eo(c)),o:c});
+    // yavaş sinematik itme
+    $('s2card').querySelector('img').style.transform=`scale(${lerp(1.0,1.08,seg(t,8.3,12.2))})`;
+  }
+  /* ---------- S3 Batak ---------- */
+  {
+    word($('s3k'),t,12.35,-80,.5);word($('s3a'),t,12.45);word($('s3b'),t,12.7);
+    const c=seg(t,13.0,13.5);put($('s3chip'),{y:lerp(30,0,eo(c)),o:c});
+    const p=seg(t,12.4,13.2),e=eo(p);
+    put($('s3card'),{y:lerp(-260,0,e),o:clamp(p*3),b:(1-e)*28});
+    const fan=[[-14,-30],[0,-50],[14,-30]];
+    [0,1,2].forEach(k=>{
+      const q=seg(t,13.4+k*.22,14.15+k*.22), pe=eb(q);
+      put($('s3c'+k),{x:lerp(900,0,pe),y:lerp(-1100,fan[k][1]*0,pe),r:lerp(500,fan[k][0],eo(q)),s:lerp(.7,1,pe),o:clamp(q*5),b:(1-eo(q))*20});
+    });
+    const q=seg(t,14.6,15.2);put($('s3tile'),{s:lerp(.3,1,eb(q)),o:clamp(q*4),r:lerp(30,0,eo(q))});
+    $('s3card').querySelector('img').style.transform=`scale(${lerp(1.0,1.07,seg(t,13.2,17.2))})`;
+  }
+  /* ---------- S4 AstroSync ---------- */
+  {
+    word($('s4k'),t,17.35,-80,.5);word($('s4a'),t,17.45);word($('s4b'),t,17.7);
+    const c=seg(t,18.0,18.5);put($('s4chip'),{y:lerp(30,0,eo(c)),o:c});
+    const p=seg(t,17.5,18.5),e=eo(p);
+    put($('s4wheel'),{s:lerp(.4,1,e),r:lerp(-90,0,e)+(t-17.5)*7,o:clamp(p*3),b:(1-e)*24});
+    const q=seg(t,19.0,19.7);put($('s4tile'),{y:lerp(120,0,eb(q)),s:lerp(.4,1,eb(q)),o:clamp(q*4)});
+    const cv=$('s4orbit').getContext('2d');cv.clearRect(0,0,SW,SH);
+    const orb=seg(t,18.3,18.9);
+    if(orb>0){
+      cv.save();cv.translate(WIDE?1390:540,WIDE?540:1180);cv.rotate(-0.35);
+      for(let s=0;s<2;s++){
+        const a0=t*1.3+s*Math.PI;
+        for(let k=0;k<26;k++){
+          const a=a0-k*.045;const x=Math.cos(a)*400,y=Math.sin(a)*150;
+          const al=(1-k/26)*orb;cv.fillStyle=`rgba(255,226,150,${al*.9})`;
+          cv.beginPath();cv.arc(x,y,(k===0?15:11)*(1-k/30),0,7);cv.fill();
+        }
+        const hx=Math.cos(a0)*400,hy=Math.sin(a0)*150;
+        const gr=cv.createRadialGradient(hx,hy,0,hx,hy,60);gr.addColorStop(0,`rgba(255,235,170,${.9*orb})`);gr.addColorStop(1,'rgba(255,235,170,0)');
+        cv.fillStyle=gr;cv.beginPath();cv.arc(hx,hy,60,0,7);cv.fill();
+      }
+      cv.restore();
+    }
+  }
+  /* ---------- S5 AI ---------- */
+  {
+    const cv=$('s5net').getContext('2d');cv.clearRect(0,0,SW,SH);
+    const N=WIDE?46:34,pts=[];
+    for(let i=0;i<N;i++){
+      const bx=rnd(i+1)*SW,by=SH*.12+rnd(i+50)*SH*(WIDE?.76:.65);
+      pts.push([bx+Math.sin(t*.8+i)*38,by+Math.cos(t*.7+i*1.7)*38]);
+    }
+    const grow=eo(seg(t,21.45,22.6));
+    for(let i=0;i<N;i++)for(let j=i+1;j<N;j++){
+      const dx=pts[i][0]-pts[j][0],dy=pts[i][1]-pts[j][1],d=Math.hypot(dx,dy);
+      if(d<330){
+        const a=(1-d/330)*grow;
+        cv.strokeStyle=`rgba(54,207,201,${a*.6})`;cv.lineWidth=2;
+        cv.beginPath();cv.moveTo(pts[i][0],pts[i][1]);cv.lineTo(pts[j][0],pts[j][1]);cv.stroke();
+        const ph=((t*.9+(i*7+j*3)*.13)%1);
+        if(rnd(i*31+j)>.55){cv.fillStyle=`rgba(255,226,150,${a})`;cv.beginPath();
+          cv.arc(lerp(pts[i][0],pts[j][0],ph),lerp(pts[i][1],pts[j][1],ph),5,0,7);cv.fill();}
+      }
+    }
+    for(let i=0;i<N;i++){
+      const pop=eb(seg(t,21.4+rnd(i)*.8,21.9+rnd(i)*.8));
+      cv.fillStyle='#36CFC9';cv.beginPath();cv.arc(pts[i][0],pts[i][1],lerp(0,9,pop),0,7);cv.fill();
+      cv.fillStyle='rgba(54,207,201,.25)';cv.beginPath();cv.arc(pts[i][0],pts[i][1],lerp(0,22,pop),0,7);cv.fill();
+    }
+    word($('s5k'),t,21.55,0,.5);word($('s5a'),t,21.65,0,.7);word($('s5b'),t,21.9,0,.7);
+    ['s5a','s5b'].forEach((id,k)=>{const p=seg(t,21.65+k*.25,22.3+k*.25);put($(id),{y:lerp(60,0,eo(p)),o:clamp(p*3),b:(1-eo(p))*20});});
+    put($('s5k'),{y:lerp(40,0,eo(seg(t,21.55,22.0))),o:seg(t,21.55,22.0)});
+  }
+  /* ---------- S6 ---------- */
+  {
+    const rowX=WIDE?[620,860,1100]:[200,440,680], rowY=WIDE?60:430, OX=WIDE?860:440, OY=WIDE?440:800;
+    [0,1,2].forEach(k=>{
+      const pin=eb(seg(t,24.3+k*.12,25.0+k*.12));
+      const conv=eio(seg(t,25.2,26.0));
+      const ang=-Math.PI/2+k*2*Math.PI/3+t*1.4*(1-conv)+(1-seg(t,24.2,25.0))*2;
+      const orbX=OX+Math.cos(ang)*(330*(1-conv)),orbY=OY+Math.sin(ang)*(330*(1-conv));
+      const x=lerp(orbX,rowX[k],conv),y=lerp(orbY,rowY,conv);
+      put($('s6t'+k),{x:x,y:y,s:lerp(.2,1,pin),o:clamp(pin*3),b:(1-eo(seg(t,24.3+k*.12,25.0+k*.12)))*18,r:(1-conv)*Math.sin(t*2+k)*6});
+    });
+    const w=seg(t,25.6,26.3);put($('s6w1'),{s:lerp(1.25,1,eo(w)),o:clamp(w*3),b:(1-eo(w))*24});
+    const w2=seg(t,25.8,26.5);put($('s6w2'),{y:lerp(40,0,eo(w2)),o:w2,b:(1-eo(w2))*14});
+    const tg=seg(t,26.3,26.9);put($('s6tag'),{y:lerp(40,0,eo(tg)),o:tg,b:(1-eo(tg))*14});
+    const cta=seg(t,26.7,27.3);put($('s6cta'),{s:lerp(.7,1,eb(cta)),o:clamp(cta*3),b:(1-eo(cta))*12});
+    const u=seg(t,27.1,27.6);put($('s6url'),{y:lerp(30,0,eo(u)),o:u});
+  }
+  /* ---------- S7 ---------- */
+  {
+    put($('s7hero'),{s:lerp(1.35,1.2,seg(t,28,30)),b:20});
+    const l=eo(seg(t,28.1,28.8));
+    const LW=WIDE?1100:900,CXs=SW/2;
+    $('s7l1').style.width=LW*l+'px';$('s7l1').style.left=(CXs-LW/2*l)+'px';
+    $('s7l2').style.width=LW*l+'px';$('s7l2').style.left=(CXs-LW/2*l)+'px';
+    const a=seg(t,28.15,28.8);put($('s7w1'),{s:lerp(1.2,1,eo(a)),o:clamp(a*3),b:(1-eo(a))*20});
+    const b=seg(t,28.3,28.95);put($('s7w2'),{y:lerp(30,0,eo(b)),o:b});
+    const c=seg(t,28.5,29.2);put($('s7ea'),{s:lerp(.85,1,eb(c)),o:clamp(c*3),b:(1-eo(c))*18});
+    const u=seg(t,28.9,29.4);put($('s7url'),{y:lerp(20,0,eo(u)),o:u});
+  }
+}
+function fit(){const sc=innerWidth/SW;$('stage').style.transform=`scale(${sc})`}
+if(WIDE){
+  ['s4orbit','s5net'].forEach(id=>{$(id).width=SW;$(id).height=SH});
+  $('s1l1').setAttribute('d','M 1120 540 L 1410 540');$('s1l2').setAttribute('d','M 1410 540 L 1700 540');
+}
+fit();window.R=R;
+window.ready=Promise.all([...document.images].map(i=>i.decode().catch(()=>{}))).then(()=>document.fonts.ready).then(()=>true);
+if(location.hash.startsWith('#t=')) window.ready.then(()=>R(parseFloat(location.hash.slice(3))));
+</script>
+</body>
+</html>

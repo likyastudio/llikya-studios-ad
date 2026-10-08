@@ -1,0 +1,16 @@
+{
+  "model_id": "eleven_multilingual_v2",
+  "language": "tr",
+  "voice_settings": {"stability": 0.5, "similarity_boost": 0.8, "style": 0.25, "use_speaker_boost": true},
+  "respell": {"Likya Studios": "Likya Stüdyos", "Wine Intelligence": "Vayn İntelicıns", "AstroSync": "Astro Sink"},
+  "lines": [
+    {"id": "01", "text": "Her büyük deneyim bir fikirle başlar.", "start_hint": 0.3},
+    {"id": "02", "text": "Likya Studios'ta fikirleri uygulamalara, oyunlara ve yapay zekâ deneyimlerine dönüştürüyoruz.", "start_hint": 3.2},
+    {"id": "03", "text": "Wine Intelligence ile şarap keşfine yeni bir bakış getiriyoruz.", "start_hint": 7.2},
+    {"id": "04", "text": "Likya Batak ile klasik oyunu modern bir masaya taşıyoruz.", "start_hint": 12.2},
+    {"id": "05", "text": "AstroSync ile gökyüzünü dijital deneyimle buluşturuyoruz.", "start_hint": 17.2},
+    {"id": "06", "text": "Yapay zekâyla yeni deneyimler tasarlıyoruz.", "start_hint": 21.3},
+    {"id": "07", "text": "Likya Studios. Fikirden dijital gerçekliğe. Projelerimizi keşfet.", "start_hint": 24.3}
+  ],
+  "pronunciation_test": "Likya Stüdyos. Vayn İntelicıns. Likya Batak. Astro Sink."
+}
