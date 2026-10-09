@@ -4,7 +4,7 @@ Brif: `brief/PROMPT.md`, onaylar: `brief/APPROVALS.md`. Varlıklar ve kaynaklar�
 
 ## Yeniden üretim
 - Sahne: `build/scene.html` (9:16), `?wide` ile 16:9. Render: `node build/render.mjs video 540 30 out.mp4` (16:9 için `WIDE=1`).
-- Ses: `python3 build/audio.py` (müzik + SFX, kodla), `vo/generate.py` (ElevenLabs, varsayılan kuru çalışma), `build/mix_final.py` (ducking, −14 LUFS).
+- Ses: `python3 build/audio.py` (müzik + SFX, kodla), `vo/generate.mjs` (ElevenLabs SDK, varsayılan kuru çalışma; `npm install` gerekir; eski Python sürümü `vo/generate.py`), `build/mix_final.py` (ducking, −14 LUFS).
 - Finaller: `build/build_finals.sh` (ses onayından sonra).
 
 ## Durum
