@@ -8,4 +8,4 @@ Brif: `brief/PROMPT.md`, onaylar: `brief/APPROVALS.md`. Varlıklar ve kaynaklar�
 - Finaller: `build/build_finals.sh` (ses onayından sonra).
 
 ## Durum
-Seslendirme yok; SF Pro dosyası ve şeffaf logo bekleniyor. `ELEVENLABS_API_KEY` yalnızca ortam değişkeninden okunur, depoya yazılmaz.
+Görüntü finali hazır (`finals/*_paylasim.mp4`, 9:16 ve 16:9, 60 fps, hareket bulanıklı; `build/render_hq.mjs`). Ses paketi `finals/Likya_Ses_Destek.zip`, seslendirme zamanlaması `finals/ses_destek/VO_ZAMANLAMA.md`. Seslendirme dışarıda yapılacak; SF Pro dosyası ve şeffaf logo bekleniyor. `ELEVENLABS_API_KEY` yalnızca ortam değişkeninden okunur, depoya yazılmaz.

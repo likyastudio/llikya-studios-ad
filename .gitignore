@@ -14,3 +14,7 @@ node_modules/
 # sırlar: anahtarlar asla depoya girmez
 .env
 *.key
+finals/_*/
+finals/ses_destek/*.wav
+finals/ses_destek/*.flac
+build/check_hq_*.png
