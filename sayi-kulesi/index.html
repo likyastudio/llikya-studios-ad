@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1230">
+  <meta name="description" content="Sayı Kulesi: sütuna sayı bırak, eşitleri birleştir, 2048'e ulaş. Likya Studios.">
+  <title>Sayı Kulesi | Likya Studios</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230b1230'/%3E%3Crect x='10' y='34' width='20' height='20' rx='6' fill='%238fe3ff'/%3E%3Crect x='34' y='34' width='20' height='20' rx='6' fill='%239af0c6'/%3E%3Crect x='22' y='10' width='20' height='20' rx='6' fill='%23ffe48a'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <h1 class="title">Sayı <span>Kulesi</span></h1>
+      <div class="actions">
+        <button id="soundBtn" class="icon-btn" type="button" aria-pressed="true" aria-label="Sesi kapat">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" stroke="none"/>
+            <path class="wave" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/>
+            <path class="slash" d="M17 9l5 6M22 9l-5 6"/>
+          </svg>
+        </button>
+        <button id="restartBtn" class="btn small" type="button">Yeniden Başlat</button>
+      </div>
+    </header>
+
+    <section class="hud" aria-label="Skor">
+      <div class="stat">
+        <span class="label">Puan</span>
+        <strong id="score" data-value="0">0</strong>
+      </div>
+      <div class="stat">
+        <span class="label">Rekor</span>
+        <strong id="best" data-value="0">0</strong>
+      </div>
+      <div class="stat next">
+        <span class="label">Sıradaki</span>
+        <div id="nextTile" class="next-tile" data-v="2" data-len="1" aria-label="Sıradaki sayı">
+          <div class="face"><span>2</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div id="combo" class="combo" role="status" aria-live="polite"></div>
+
+    <section class="board-wrap">
+      <div id="board" class="board">
+        <div id="grid" class="grid" aria-hidden="true"></div>
+        <div id="blocks" class="blocks" aria-hidden="true"></div>
+        <div id="fx" class="fx" aria-hidden="true"></div>
+        <div id="cols" class="cols"></div>
+      </div>
+    </section>
+
+    <footer class="sign">
+      <span class="gem" aria-hidden="true"></span>
+      <span>Likya Studios</span>
+    </footer>
+  </main>
+
+  <div id="startOverlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="startTitle" hidden>
+    <div class="card">
+      <h2 id="startTitle" class="card-title">Sayı <span>Kulesi</span></h2>
+      <ul class="rules">
+        <li>Bir sütuna dokun, blok en alta yerleşsin. Bilgisayarda <kbd>1</kbd>–<kbd>5</kbd> tuşlarını kullan.</li>
+        <li>Eşit sayılar alt, sol ve sağ komşuyla birleşir. Zincirleme birleşmeler daha çok puan verir.</li>
+        <li>2048 bloğuna ulaş. Bütün sütunlar dolarsa oyun biter.</li>
+      </ul>
+      <button id="startBtn" class="btn big" type="button">Oyna</button>
+    </div>
+  </div>
+
+  <div id="overOverlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="overTitle" hidden>
+    <div class="card">
+      <h2 id="overTitle" class="card-title">Oyun Bitti</h2>
+      <p class="card-sub">Bütün sütunlar doldu.</p>
+      <div class="final"><span class="label">Puanın</span><strong id="overScore">0</strong></div>
+      <p id="overRecord" class="record" hidden>Yeni rekor!</p>
+      <button id="againBtn" class="btn big" type="button">Tekrar Oyna</button>
+    </div>
+  </div>
+
+  <div id="winOverlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="winTitle" hidden>
+    <div class="card win">
+      <div class="win-tile" aria-hidden="true">2048</div>
+      <h2 id="winTitle" class="card-title">Tebrikler!</h2>
+      <p class="card-sub">2048 bloğuna ulaştın. İstersen daha yükseğe devam edebilirsin.</p>
+      <button id="continueBtn" class="btn big" type="button">Devam Et</button>
+      <button id="winRestartBtn" class="btn ghost" type="button">Yeniden Başlat</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
